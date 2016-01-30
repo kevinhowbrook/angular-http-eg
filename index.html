@@ -3,7 +3,10 @@
 <!-- angular -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src=""></script>
+
 <script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-route/angular-route.min.js"></script>
+
 <script src="./lib/js/all.js"></script>
 
 <!-- css -->
@@ -11,15 +14,13 @@
 <body>
 
     <!-- Begin page content -->
-    <div class="container">
+    <div class="container main">
       <div class="page-header">
-        <h1>Love the garden</h1>
+        <h1><a href="/">Love the garden</h1></a>
       </div>
       <p class="lead">Below is a list of nodes from an API set <a href="http://dev-kevinsandbox.pantheon.io/api/node">here</a></p>
-      <div ng-app="myApp" ng-controller="myCtrl" class="row"> 
-		<div ng-repeat="node in allNodes" class="col-sm-4">
-			{{ node.title }} <a href="/node/{{ node.nid }}">link</a>
-		</div>
+      <div ng-app="myApp"> 
+		<ng-view></ng-view>
 	</div>
     </div>
 

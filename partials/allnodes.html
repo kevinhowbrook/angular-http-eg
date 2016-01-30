@@ -1,1 +1,5 @@
-I am everything!
+<div class="row">
+	<div ng-repeat="node in allNodes" class="col-sm-4">
+		{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
+	</div> 
+</div>
