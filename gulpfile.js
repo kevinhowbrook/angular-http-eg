@@ -6,15 +6,30 @@ var LessPluginCleanCSS = require('less-plugin-clean-css'),
    LessPluginAutoPrefix = require('less-plugin-autoprefix'),
    cleancss = new LessPluginCleanCSS({ advanced: true }),
    autoprefix = new LessPluginAutoPrefix({ browsers: ["last 2 versions"] });
+
+var concat = require('gulp-concat');
+
 gulp.task('less', function () {
- return gulp.src('./less/style.less')
+ return gulp.src(['./node_modules/bootstrap/less/bootstrap.less',
+  './lib/less/style.less'])
    .pipe(less({
      paths: [ path.join(__dirname, 'less', 'includes') ],
      plugins: [autoprefix, cleancss]
    }))
    .pipe(print())
-   .pipe(gulp.dest('less/css'))
+   .pipe(concat('style.css'))
+   .pipe(gulp.dest('./lib/less/css'))
 });
-gulp.task('default', ['less'], function() {
- gulp.watch(['less/**/*.less'], ['less']);
+
+//js
+gulp.task('js', function () {
+    gulp.src(['./node_modules/bootstrap/dist/js/bootstrap.js',
+     './lib/js/custom.js',
+      './app.js'])
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('./lib/js'));
+});
+
+gulp.task('default', ['less', 'js'], function() {
+ gulp.watch(['./lib/less/*.less', './lib/js/*.js'], ['less', 'js']);
 });
