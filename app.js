@@ -1,4 +1,6 @@
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', []);
+
+
 app.controller('myCtrl', function($scope, $http) {
   $http({
     method : "GET",

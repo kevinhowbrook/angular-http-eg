@@ -16,10 +16,13 @@
         <h1>Love the garden</h1>
       </div>
       <p class="lead">Below is a list of nodes from an API set <a href="http://dev-kevinsandbox.pantheon.io/api/node">here</a></p>
-       <div ng-app="myApp" ng-controller="myCtrl" class="row"> 
-		<ng-view></ng-view>
+      <div ng-app="myApp" ng-controller="myCtrl" class="row"> 
+		<div ng-repeat="node in allNodes" class="col-sm-4">
+			{{ node.title }} <a href="/node/{{ node.nid }}">link</a>
+		</div>
 	</div>
-    </div>   
+    </div>
+
     <footer class="footer">
       <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
