@@ -1,8 +1,16 @@
-<div class="form-group"><input type="text" id="textFilter" ng-model="textFilter" class="form-control" placeholder="Type to filter... eg Neo" autofocus>
-</div>
-<div class="row">
-	<div ng-repeat="node in allNodes |  filter : textFilter |  filter:search.type1" class="col-sm-4">
-	{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
-	</div> 
 
+<div ng-switch on="loaded">
+    <div ng-switch-when="false">
+     Loading 250 nodes... <img src="http://www.ajaxload.info/images/exemples/21.gif">
+
+    </div>
+    <div ng-switch-default>
+			<div class="form-group"><input type="text" id="textFilter" ng-model="textFilter" class="form-control" placeholder="Type to filter... eg Neo" autofocus>
+			</div>
+			<div class="row">
+				<div ng-repeat="node in allNodes |  filter:textFilter" class="col-sm-4">
+				{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
+				</div> 
+			</div>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 var app = angular.module('myApp', ['ngRoute' , 'ui.bootstrap']);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
      .when('/', {
          templateUrl: './partials/allnodes.html',
@@ -14,6 +14,8 @@ app.config(function ($routeProvider) {
      .otherwise({
          redirectTo: '/'
      });
+                $httpProvider.defaults.cache = true;
+
 });
 
 app.controller('myCtrl', function($scope, $http) {
@@ -31,14 +33,16 @@ app.controller('myCtrl', function($scope, $http) {
   $scope.maxSize = 5;
   $scope.bigTotalItems = 175;
   $scope.bigCurrentPage = 1;
-
+  $scope.loaded = false;
   $http({
     method : "GET",
+    cache: true,
     url : "http://dev-kevinsandbox.pantheon.io/api/node"
   	}).then(function mySucces(response) {
       $scope.allNodes = response.data;
+      $scope.loaded = true;
     }, function myError(response) {
-      $scope.allNodes = 'loading';
+      $scope.allNodes = 'Error connecting';
   });
 });
 
