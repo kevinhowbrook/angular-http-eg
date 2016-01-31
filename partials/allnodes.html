@@ -1,5 +1,8 @@
+<div class="form-group"><input type="text" id="textFilter" ng-model="textFilter" class="form-control" placeholder="Type to filter... eg Neo" autofocus>
+</div>
 <div class="row">
-	<div ng-repeat="node in allNodes" class="col-sm-4">
-		{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
+	<div ng-repeat="node in allNodes |  filter : textFilter |  filter:search.type1" class="col-sm-4">
+	{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
 	</div> 
+
 </div>

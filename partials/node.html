@@ -1,8 +1,19 @@
-      <div ng-app="myApp" ng-controller="nodeCtrl"> 
-      <a href="/#/"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back to main list
-</a><h1>{{title}}</h1>
-      <hr>
-      <div ng-bind-html="body">
-      	{{body}}
-      	</div>
+<div ng-app="myApp" ng-controller="nodeCtrl" class="view-mode-full"> 
+  <a href="/#/"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>  Back to main list</a>
+  <h1>{{title}}</h1>
+  <hr>
+  <div ng-bind-html="body">
+  	{{body}}
+  </div>
+  	<div class="clearfix categories">
+  	<h5>Categories: </h5>
+	  	<div ng-repeat="category in categories">
+		 		<label class="label label-info category">
+	 			{{category.name}}
+	  		</label>
+	  	</div>			
+	  </div>
+	</div>
+	<br>
+	<a class="btn btn-primary" target="_blank" href="http://dev-kevinsandbox.pantheon.io/node/{{nid}}">View this item on our website</a>
 	</div>
