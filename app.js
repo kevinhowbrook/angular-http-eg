@@ -41,6 +41,8 @@ app.controller('myCtrl', function($scope, $http) {
   	}).then(function mySucces(response) {
       $scope.allNodes = response.data;
       $scope.loaded = true;
+      
+      
     }, function myError(response) {
       $scope.allNodes = 'Error connecting';
   });
