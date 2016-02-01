@@ -8,14 +8,14 @@
 			<div class="form-group"><input type="text" id="textFilter" ng-model="textFilter" class="form-control" placeholder="Type to filter... eg Neo" autofocus>
 			</div>
 			<div class="row">
-			<label><input type="checkbox" name="mulder" value="mulder">Mulder</label>
-			<label><input type="checkbox" name="scully" value="scully">Scully</label>
+			<!-- <label><input type="checkbox" name="mulder" value="mulder">Mulder</label>
+			<label><input type="checkbox" name="scully" value="scully">Scully</label> -->
 		
 				<div ng-repeat="node in allNodes |  filter:textFilter" class="col-sm-4">
 				{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
-					 <div ng-repeat="category in node.category">
+					<!--  <div ng-repeat="category in node.category">
 						{{category.name}}
-					</div>
+					</div> -->
 				
 				</div> 
 			</div>
