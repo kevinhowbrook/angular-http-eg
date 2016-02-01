@@ -1,5 +1,5 @@
 
-<div ng-switch on="loaded">
+<!-- <div ng-switch on="loaded">
     <div ng-switch-when="false">
      Loading 250 nodes... <img src="./lib/images/21.gif">
 
@@ -7,9 +7,7 @@
     <div ng-switch-default>
 			</div>
 			<div class="row">
-			<!-- <label><input type="checkbox" name="mulder" value="mulder">Mulder</label>
-			<label><input type="checkbox" name="scully" value="scully">Scully</label> -->
-		
+			
 				<div ng-repeat="node in allNodes" class="col-sm-4">
 				{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
 
@@ -20,4 +18,17 @@
 				</div> 
 			</div>
     </div>
+</div> -->
+
+<div ng-controller="myCtrl">
+    <b>Category:</b>
+    <div ng-repeat="cat in getCategories()">
+        <b><input type="checkbox" ng-model="filter[cat]" /> {{cat}}</b>
+    </div>
+    <hr />
+    <div ng-repeat="w in filtered=(wines | filter:filterByCategory)">
+        {{w.name}} ({{w.category}})
+    </div>
+    <hr />
+    Number of results: {{filtered.length}}
 </div>
