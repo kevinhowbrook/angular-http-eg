@@ -1,5 +1,7 @@
 var app = angular.module('myApp', ['ngRoute' , 'ui.bootstrap']);
 
+var jsonsrc = 'http://local.kevinsandbox.com'; 
+
 app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
      .when('/', {
@@ -37,7 +39,7 @@ app.controller('myCtrl', function($scope, $http) {
   $http({
     method : "GET",
     cache: true,
-    url : "http://dev-kevinsandbox.pantheon.io/api/node"
+    url : jsonsrc + "/api/node"
   	}).then(function mySucces(response) {
       $scope.allNodes = response.data;
       $scope.loaded = true;
@@ -52,7 +54,7 @@ app.controller('myCtrl', function($scope, $http) {
 app.controller('nodeCtrl', function($scope, $routeParams, $http, $sce) {
   $http({
     method : "GET",
-    url : "http://dev-kevinsandbox.pantheon.io/api/node/" + $routeParams.id
+    url : jsonsrc + "/api/node/" + $routeParams.id
   	}).then(function mySucces(response) {
       $scope.title = response.data.title;
       $scope.nid = response.data.nid;

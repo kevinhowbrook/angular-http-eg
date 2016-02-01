@@ -5,17 +5,17 @@
 
     </div>
     <div ng-switch-default>
-			<div class="form-group"><input type="text" id="textFilter" ng-model="textFilter" class="form-control" placeholder="Type to filter... eg Neo" autofocus>
 			</div>
 			<div class="row">
 			<!-- <label><input type="checkbox" name="mulder" value="mulder">Mulder</label>
 			<label><input type="checkbox" name="scully" value="scully">Scully</label> -->
 		
-				<div ng-repeat="node in allNodes |  filter:textFilter" class="col-sm-4">
+				<div ng-repeat="node in allNodes" class="col-sm-4">
 				{{ node.title }} <a href="#/node/{{ node.nid }}">link</a>
-					<!--  <div ng-repeat="category in node.category">
-						{{category.name}}
-					</div> -->
+
+					<div ng-repeat="category in node.category">
+						<label class="label label-info">{{category}}</label>
+					</div> 
 				
 				</div> 
 			</div>
