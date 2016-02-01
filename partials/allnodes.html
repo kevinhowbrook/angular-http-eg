@@ -23,11 +23,15 @@
 <div ng-controller="myCtrl">
     <b>Category:</b>
     <div ng-repeat="cat in getCategories()">
-        <b><input type="checkbox" ng-model="filter[cat]" /> {{cat}}</b>
+        <b><input type="checkbox" ng-model="filter[cat]" />{{cat}} 
+        </b>
     </div>
     <hr />
-    <div ng-repeat="w in filtered=(wines | filter:filterByCategory)">
-        {{w.name}} ({{w.category}})
+    <div ng-repeat="node in filtered=(allnodes | filter:filterByCategory)">
+        {{node.title}} 
+        <div ng-repeat="term in node.category">
+        	<label class="label label-info">{{term}}</label>
+        </div> 
     </div>
     <hr />
     Number of results: {{filtered.length}}
