@@ -87,48 +87,39 @@ app.config(function ($routeProvider, $httpProvider) {
 var jsonsrc = 'http://local.kevinsandbox.com'; 
 
 app.controller('myCtrl', function ($scope, $http) {
- $http({
-    method : "GET",
-    cache: true,
-    url : jsonsrc + "/api/node"
-   }).then(function mySucces(response) {
-      $scope.allnodes = response.data;
+ // $http({
+ //    method : "GET",
+ //    cache: true,
+ //    url : jsonsrc + "/api/node"
+ //   }).then(function mySucces(response) {
+      $scope.allnodes = [
+        {"nid": "1","uid": "1","title": "Welcome"},
+        {"nid": "509","uid": "0","title": "Neque Nunc Quibus","category": ["Scully"]},
+        {"nid": "525","uid": "1","title": "Et Nutus Roto Tamen","category": ["Mulder"]},
+        {"nid": "530","uid": "1","title": "Exerci Iriure Os","category": ["Mulder","Scully"]}
+      ];
       $scope.loaded = true;
-      
-
-       $scope.filter = {};
-
-        $scope.getCategories = function () {
-            return ($scope.allnodes || []).map(function (w) {
-                return w.category;
-            }).filter(function (w, idx, arr) {
-                return arr.indexOf(w) === idx;
-            });
-        };
-        
-        $scope.filterByCategory = function (node) {
-            return $scope.filter[node.category] || noFilter($scope.filter);
-        };
-        
-        function noFilter(filterObj) {
-            for (var key in filterObj) {
-                if (filterObj[key]) {
-                    return false;
-                }
+      $scope.filter = {};
+      $scope.categories = ['Mulder','Scully'];
+      $scope.filterByCategory = function (node) {
+        for (var key in $scope.filter) {
+            if ($scope.filter[key] && node.category.indexOf(key.toLowerCase()) < 0) {
+              return false;
             }
-            return true;
-        }  
-    
-      
-    }, function myError(response) {
-      $scope.allNodes = 'Error connecting';
-  });
-    // $scope.allnodes = [
-    //     { name: "This is node 1", category: "plant" },
-    //     { name: "Another title is this one", category: "weed" },
-    //     { name: "This is Another title", category: "weed" },
-    //     { name: "And finally a fourth title", category: "flower" }
-          
-    // ];
-             
+        }
+
+        return true;
+      };
+
+      // $scope.filterByCategory = function (node) {
+      //   return $scope.filter[node.category] || noFilter($scope.filter);
+      // };
+      function noFilter(filterObj) {
+          for (var key in filterObj) {
+              if (filterObj[key]) {
+                  return false;
+              }
+          }
+          return true;
+      };            
 });

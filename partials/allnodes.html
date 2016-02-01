@@ -22,7 +22,7 @@
 
 <div ng-controller="myCtrl">
     <b>Category:</b>
-    <div ng-repeat="cat in getCategories()">
+    <div ng-repeat="cat in categories">
         <b><input type="checkbox" ng-model="filter[cat]" />{{cat}} 
         </b>
     </div>
