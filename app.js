@@ -101,19 +101,30 @@ app.controller('myCtrl', function ($scope, $http) {
       $scope.loaded = true;
       $scope.filter = {};
       $scope.categories = ['Mulder','Scully'];
-      $scope.filterByCategory = function (node) {
-        for (var key in $scope.filter) {
-            if ($scope.filter[key] && node.category.indexOf(key.toLowerCase()) < 0) {
-              return false;
-            }
-        }
+      // $scope.filterByCategory = function (node) {
+      //   for (var key in $scope.filter) {
+      //       if ($scope.filter[key] && node.category.indexOf(key.toLowerCase()) < 0) {
+      //         return false;
+      //       }
+      //   }
 
-        return true;
-      };
+      //   return true;
+      // };
 
       // $scope.filterByCategory = function (node) {
       //   return $scope.filter[node.category] || noFilter($scope.filter);
       // };
+
+       $scope.filterByCategory = function(node) {
+    for (var key in $scope.filter) {
+      if ($scope.filter[key] && (!node.category || node.category.indexOf(key) < 0)) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+  
       function noFilter(filterObj) {
           for (var key in filterObj) {
               if (filterObj[key]) {
